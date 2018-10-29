@@ -63,7 +63,7 @@ namespace JohnsonK_Chpt7Asgn7
             int rowPick;
             int columnPick;
 
-            
+            /*
             
                 Random column = new Random();
                 Random row = new Random();
@@ -73,7 +73,7 @@ namespace JohnsonK_Chpt7Asgn7
 
                 grid[columnPick, rowPick] = ;
             
-
+            */
 
             for (int k = 0; k < 9; k++)
             {

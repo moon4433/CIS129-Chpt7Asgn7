@@ -34,7 +34,20 @@ namespace JohnsonK_Chpt7Asgn7
 
         public static Random columnBattle = new Random();
         public static Random rowBattle = new Random();
-        public static Random axisBattle = new Random();
+
+        public static int rowPickDest;
+        public static int columnPickDest;
+        public static int axisPickDest;
+
+        public static Random columnDest = new Random();
+        public static Random rowDest = new Random();
+
+        public static int rowPickBoat;
+        public static int columnPickBoat;
+
+        public static Random columnBoat = new Random();
+        public static Random rowBoat = new Random();
+
 
 
         static void Main(string[] args)
@@ -115,11 +128,11 @@ namespace JohnsonK_Chpt7Asgn7
             }
 
             columnPickBattle = columnBattle.Next(5, 6);
-            rowPickBattle = rowBattle.Next(5, 6);
-            
+            rowPickBattle = rowBattle.Next(5, 7);
+            axisPickBattle = axisCarrier.Next(2, 4);
             
 
-            if (axisPickCarrier == 0)
+            if (axisPickBattle == 2)
             {
                 
                 for (int i = 0; i < SHIP_SIZE[1]; i++)
@@ -129,7 +142,7 @@ namespace JohnsonK_Chpt7Asgn7
                 }
                 
             }
-            if (axisPickCarrier == 1)
+            if (axisPickBattle == 3)
             {
                 
                 for (int i = 0; i < SHIP_SIZE[1]; i++)
@@ -138,22 +151,40 @@ namespace JohnsonK_Chpt7Asgn7
                     columnPickBattle++;
                 }
             }
-            /*
-            for (int i = 0; i < SHIP_SIZE[2]; i++)
+
+            columnPickDest = columnDest.Next(6, 8);
+            rowPickDest = rowDest.Next(0, 3);
+            axisPickDest = axisCarrier.Next(5, 7);
+
+            if (axisPickDest == 5)
             {
 
-                grid[columnPick, rowPick] = SHIP_IDENTIFIERS[2];
+                for (int i = 0; i < SHIP_SIZE[2]; i++)
+                {
+                    grid[columnPickDest, rowPickDest] = SHIP_IDENTIFIERS[2];
+                    rowPickDest++;
+                }
 
-                rowPick += 1;
             }
+            if (axisPickDest == 6)
+            {
+
+                for (int i = 0; i < SHIP_SIZE[2]; i++)
+                {
+                    grid[columnPickDest, rowPickDest] = SHIP_IDENTIFIERS[2];
+                    columnPickDest++;
+                }
+            }
+
+            columnPickBoat = columnDest.Next(0, 5);
+            rowPickBoat = rowDest.Next(8, 9);
 
             for (int i = 0; i < SHIP_SIZE[3]; i++)
             {
-
-                grid[columnPick, rowPick] = SHIP_IDENTIFIERS[3];
-
-                rowPick += 1;
+                grid[columnPickBoat, rowPickBoat] = SHIP_IDENTIFIERS[3];
+                rowPickBoat++;
             }
+            /*
 
             for (int i = 0; i < SHIP_SIZE[4]; i++)
                 {
@@ -170,9 +201,20 @@ namespace JohnsonK_Chpt7Asgn7
 
                 for (int j = 0; j < 10; j++)
                 {
+                    /*
+                    if(grid[k, j] != "~")
+                    {
+                        Write("~");
+                    }
+                    else
+                    {
+                        Write(grid[k, j]);
+                    }
+                    */
                     Write(grid[k, j]);
 
                     Write(" ");
+                    
 
                 }
                 WriteLine();

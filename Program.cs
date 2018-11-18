@@ -12,9 +12,29 @@ namespace JohnsonK_Chpt7Asgn7
 
         public static String[,] grid = new string[10, 10];
         enum ShipType {Carrier, Battleship, Destroyer, Boat, Submarine};
-                                     //  ACC BS CR DS SUB
+        public static String[] SHIP_IDENTIFIERS = new string[] {"c", "b", "d", "b", "s"};
+
+                                     //  ACC BS DR PB SUB
         public static int[] SHIP_SIZE = { 5, 4, 3, 2, 3 };
         enum StrikeResult {Sink, Hit, Miss};
+
+        
+
+        public static int rowPickCarrier;
+        public static int columnPickCarrier;
+        public static int axisPickCarrier;
+
+        public static Random columnCarrier = new Random();
+        public static Random rowCarrier = new Random();
+        public static Random axisCarrier = new Random();
+
+        public static int rowPickBattle;
+        public static int columnPickBattle;
+        public static int axisPickBattle;
+
+        public static Random columnBattle = new Random();
+        public static Random rowBattle = new Random();
+        public static Random axisBattle = new Random();
 
 
         static void Main(string[] args)
@@ -38,6 +58,8 @@ namespace JohnsonK_Chpt7Asgn7
 
         }
 
+        
+
         public static void Populate()
         {
             // TODO:
@@ -54,44 +76,107 @@ namespace JohnsonK_Chpt7Asgn7
 
             // check if any other ships need placing
 
-            ShipType ship1 = ShipType.Battleship;
-            ShipType ship2 = ShipType.Boat;
-            ShipType ship3 = ShipType.Carrier;
-            ShipType ship4 = ShipType.Destroyer;
-            ShipType ship5 = ShipType.Submarine;
 
-            int rowPick;
-            int columnPick;
 
-            
-            
-                Random column = new Random();
-                Random row = new Random();
-               
-                columnPick = column.Next(0,10);
-                rowPick = row.Next(0,10);
-
-                grid[columnPick, rowPick] = ;
             
 
 
-            for (int k = 0; k < 9; k++)
+            for (int k = 0; k < 10; k++)
             {
 
-                for (int j = 0; j < 9; j++)
-                {
-                    grid[k, j] = "o";
-                  
-                      Write(grid[k, j] + " ");
+                for (int j = 0; j < 10; j++)
+                {            
+                        grid[k, j] = "~";
 
-                    
+                }
+            }
+
+            columnPickCarrier = columnCarrier.Next(0, 3);
+            rowPickCarrier = rowCarrier.Next(0, 3);
+            axisPickCarrier = axisCarrier.Next(0, 2);
+
+            if (axisPickCarrier == 1)
+            {
+                for (int i = 0; i < SHIP_SIZE[0]; i++)
+                {
+                    grid[columnPickCarrier, rowPickCarrier] = SHIP_IDENTIFIERS[0];
+                    rowPickCarrier++;
+                }
+                
+            }
+            if (axisPickCarrier == 0)
+            {
+                for (int i = 0; i < SHIP_SIZE[0]; i++)
+                {
+                    grid[columnPickCarrier, rowPickCarrier] = SHIP_IDENTIFIERS[0];
+                    columnPickCarrier++;
+                }
+            }
+
+            columnPickBattle = columnBattle.Next(5, 6);
+            rowPickBattle = rowBattle.Next(5, 6);
+            
+
+            if (axisPickCarrier == 0)
+            {
+                
+                for (int i = 0; i < SHIP_SIZE[1]; i++)
+                {
+                    grid[columnPickBattle, rowPickBattle] = SHIP_IDENTIFIERS[1];
+                    rowPickBattle++;
+                }
+                
+            }
+            if (axisPickCarrier == 1)
+            {
+                
+                for (int i = 0; i < SHIP_SIZE[1]; i++)
+                {
+                    grid[columnPickBattle, rowPickBattle] = SHIP_IDENTIFIERS[1];
+                    columnPickBattle++;
+                }
+            }
+            /*
+            for (int i = 0; i < SHIP_SIZE[2]; i++)
+            {
+
+                grid[columnPick, rowPick] = SHIP_IDENTIFIERS[2];
+
+                rowPick += 1;
+            }
+
+            for (int i = 0; i < SHIP_SIZE[3]; i++)
+            {
+
+                grid[columnPick, rowPick] = SHIP_IDENTIFIERS[3];
+
+                rowPick += 1;
+            }
+
+            for (int i = 0; i < SHIP_SIZE[4]; i++)
+                {
+
+                    grid[columnPick, rowPick] = SHIP_IDENTIFIERS[4];
+
+                    rowPick += 1;
+                }
+
+            */
+
+            for (int k = 0; k < 10; k++)
+            {
+
+                for (int j = 0; j < 10; j++)
+                {
+                    Write(grid[k, j]);
+
+                    Write(" ");
 
                 }
                 WriteLine();
             }
-            
-            
-            
+
+
         }
 
         /*

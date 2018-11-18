@@ -78,6 +78,7 @@ namespace JohnsonK_Chpt7Asgn7
 
 
 
+            /*
             
 
 
@@ -116,6 +117,7 @@ namespace JohnsonK_Chpt7Asgn7
             columnPickBattle = columnBattle.Next(5, 6);
             rowPickBattle = rowBattle.Next(5, 6);
             
+            */
 
             if (axisPickCarrier == 0)
             {

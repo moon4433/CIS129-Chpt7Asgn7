@@ -21,7 +21,7 @@ namespace JohnsonK_Chpt7Asgn7
         public static int destroyHit = 3;
         public static int patrolHit = 2;
         public static int subHit = 3;
-        public int shipsAlive = 5;
+        public static int shipsAlive = 5;
         
 
         public static int rowPickCarrier;
@@ -81,79 +81,89 @@ namespace JohnsonK_Chpt7Asgn7
             // enter game loop
             while (isGamePlaying)
             {
-                // display grid
-                WriteLine("  |1 2 3 4 5 6 7 8 9 10");
-                WriteLine("--+---------------------");
-                for (int k = 0; k < 10; k++)
+                try
                 {
-                    Write((k + 1));
-                    if (k == 9)
+                    // display grid
+                    WriteLine("  |1 2 3 4 5 6 7 8 9 10");
+                    WriteLine("--+---------------------");
+                    for (int k = 0; k < 10; k++)
                     {
-                        Write("|");
-                    }
-                    else
-                    {
-                        Write(" |");
-                    }
-                    for (int j = 0; j < 10; j++)
-                    {
-                        /*
-                        if(grid[k, j] != "~" && grid[k, j] != "H" && grid[k, j] != "M")
+                        Write((k + 1));
+                        if (k == 9)
                         {
-                            Write("~");
+                            Write("|");
                         }
                         else
                         {
-                            Write(grid[k, j]);
+                            Write(" |");
                         }
-                        */
-                       Write(grid[k, j]);
+                        for (int j = 0; j < 10; j++)
+                        {
+                            /*
+                            if(grid[k, j] != "~" && grid[k, j] != "H" && grid[k, j] != "M")
+                            {
+                                Write("~");
+                            }
+                            else
+                            {
+                                Write(grid[k, j]);
+                            }
+                            */
+                            Write(grid[k, j]);
 
-                        Write(" ");
+                            Write(" ");
 
 
+                        }
+                        WriteLine();
                     }
                     WriteLine();
-                }
-                WriteLine();
-                // prompt user for a location on grid
-                WriteLine("Enter X");
-                descX = Convert.ToInt32(ReadLine());
-                WriteLine("Enter Y");
-                descY = Convert.ToInt32(ReadLine());
-                // check shot location for a hit or miss
-                Boolean result = Fire((descX - 1), (descY - 1));
-                if (result)
-                {
-                    WriteLine("Hit");
-                }
-                else
-                {
-                    WriteLine("Miss");
-                }
+                    // prompt user for a location on grid
+                    WriteLine("Enter X");
+                    descX = Convert.ToInt32(ReadLine());
+                    WriteLine("Enter Y");
+                    descY = Convert.ToInt32(ReadLine());
+                    // check shot location for a hit or miss
+                    Boolean result = Fire((descX - 1), (descY - 1));
+                    if (result)
+                    {
+                        WriteLine("Hit");
+                    }
+                    else
+                    {
+                        WriteLine("Miss");
+                    }
 
-                string shipfloat = ShipAfloat();
-                if(shipfloat == null)
-                {
-                    
-                }
-                else
-                {
-                    WriteLine(shipfloat);
-                }
+                    string shipfloat = ShipAfloat();
+                    if (shipfloat == null)
+                    {
 
-                
-                // display shot on grid along with the ships and their sizes along with how many are still alive
+                    }
+                    else
+                    {
+                        WriteLine(shipfloat);
+                    }
 
-                // once all ships are sunk game loop ends and player wins
-                ReadLine();
-                Clear();
-            }
-           
-            
+                    Boolean gameDescision = ShipsAfloat();
+                    if (gameDescision == false)
+                    {
+                        WriteLine("\nYou Win!");
+                        isGamePlaying = gameDescision;
+                    }
+                    // display shot on grid along with the ships and their sizes along with how many are still alive
+
+                    // once all ships are sunk game loop ends and player wins
+                    ReadLine();
+                    Clear();
+                }
+                catch
+                {
+                    WriteLine("Please enter a number from the board");
+                    ReadLine();
+                    Clear();
+                }
+            }   
         }
-
-        
 
         public static void Populate()
         {
@@ -275,7 +285,6 @@ namespace JohnsonK_Chpt7Asgn7
 
         }
 
-        
         public static bool Fire(int row, int col)
         {
 
@@ -329,52 +338,52 @@ namespace JohnsonK_Chpt7Asgn7
 
         public static string ShipAfloat()
         {
-            // TODO:
-
-            // runs check to see if specific ship was hit or not
-
-            // return true if hit
-
-            // return false if miss
      
             if (carrierHit == 0 && isCarrierAlive)
             {
+                shipsAlive -= 1;
                 isCarrierAlive = false;
-                return "Carrier Sunk";
+                return "\nCarrier Sunk";
             }
             if (battleHit == 0 && isBattleAlive)
             {
+                shipsAlive -= 1;
                 isBattleAlive = false;
-                return "Battle Ship Sunk";
+                return "\nBattle Ship Sunk";
             }
             if (destroyHit == 0 && isDestroyAlive)
             {
+                shipsAlive -= 1;
                 isDestroyAlive = false;
-                return "Destroyer Sunk";
+                return "\nDestroyer Sunk";
             }
             if (patrolHit == 0 && isPatrolAlive)
             {
+                shipsAlive -= 1;
                 isPatrolAlive = false;
-                return "Patrol Boat Sunk";
+                return "\nPatrol Boat Sunk";
             }
             if (subHit == 0 && isSubAlive)
             {
+                shipsAlive -= 1;
                 isSubAlive = false;
-                return "Submarine Sunk";
+                return "\nSubmarine Sunk";
             }
 
             return null;
         }
-        /*
-        public int ShipAfloat(int[,] grid)
+        
+        public static Boolean ShipsAfloat()
         {
-            // TODO:
 
-            // check how many ships are still alive
+            if(shipsAlive == 0)
+            {
+                return false;
+            }
 
-            // return total number of ships still alive 
+            return true;
 
         }
-        */
+        
     }
 }
